@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Go语言flag包 | Glody&#39;s Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="flag包import &amp;quot;flag&amp;quot;    &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;概述   &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;示例   &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;索引   概述Flag包履行命令行flag语法分析的功能。用法：用flag.String(),Bool(),Int()等函数定义flag。它声明一个名为“-flagname">
+<meta name="keywords" content="Go,Flag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go语言flag包">
+<meta property="og:url" content="http://glody.net/2017/05/02/Go/flag/index.html">
+<meta property="og:site_name" content="Glody's Notes">
+<meta property="og:description" content="flag包import &amp;quot;flag&amp;quot;    &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;概述   &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;示例   &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;索引   概述Flag包履行命令行flag语法分析的功能。用法：用flag.String(),Bool(),Int()等函数定义flag。它声明一个名为“-flagname">
+<meta property="og:updated_time" content="2017-05-02T04:12:16.082Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Go语言flag包">
+<meta name="twitter:description" content="flag包import &amp;quot;flag&amp;quot;    &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;概述   &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;示例   &amp;ensp;&amp;ensp;&amp;ensp;&amp;ensp;索引   概述Flag包履行命令行flag语法分析的功能。用法：用flag.String(),Bool(),Int()等函数定义flag。它声明一个名为“-flagname">
+  
+  
+    <link rel="icon" href="https://avatars3.githubusercontent.com/u/1768868?v=3&s=460">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/highlight.css">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
+  
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="true">
+  <input class="theme_preload_comment" value="true">
+</div>
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/" class="avatar" style="background-image:url(https://avatars3.githubusercontent.com/u/1768868?v=3&amp;s=460)"></a>
+<div class="author">
+    <span>Glody Guo</span>
+</div>
+<div class="icon">
+    
+    <a class="github" title="github" href="https://github.com/glody" target="_blank"></a>
+    
+    
+    
+    
+    <a class="linkedin" title="linkedin" href="glodyguo" target="_blank"></a>
+    
+    
+    
+    <a class="mail" title="mail" href="mailto:glody.guo@gmail.com"></a>
+    
+</div>
+<ul>
+    <li class="all active">全部文章</li>
+    
+    <li data-rel="Golang"> Golang </li>
+    
+</ul>
+    </div>
+    <div class="nav-right">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+    <input class="search" type="text" placeholder="Search..." autocomplete="off">
+    <span>
+        <label for="tagswitch">Tags:</label>
+        <input id="tagswitch" type="checkbox">
+    </span>
+</form>
+<ul class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">Go</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color5">Flag</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</ul>
+
+<nav>
+    
+    <a class="Golang " href="/2017/05/02/Go/flag/" data-tag="Go,Flag">
+        <span class="post-title" title="Go语言flag包">Go语言flag包</span>
+        <span class="post-date" title="2017-05-02 11:04:21">2017/05/02</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/AddSecurityGroupRule/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:27">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/ad/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:18">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/cannot_sariablize_None/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:30">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/eth0/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:25">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/gist/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:12">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/hwinfo/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:19">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/iotop/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:21">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/ldap/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:17">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/iostat/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:22">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/password/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:33">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/network/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:28">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/remount/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:16">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/restful_api/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:34">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/s3cmd/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:35">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/sar/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:20">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/shadowsocks/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:15">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/shell/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:36">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/tui_setup/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:26">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/unzip/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:13">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/sysstat/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:21">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/top/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:23">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/uptime/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:24">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/vim/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:37">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/virsh/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:14">2017/11/10</span>
+    </a>
+    
+    <a class="" href="/2017/11/10/Markdown/xsky/" data-tag="">
+        <span class="post-title" title=""></span>
+        <span class="post-date" title="2017-11-10 15:37:32">2017/11/10</span>
+    </a>
+    
+</nav>
+    </div>
+</aside>
+<div class="post">
+    <div class="pjax">
+        <article id="post-Go/flag" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-05-02 11:04:21">2017 May 02</time>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color3">Go</a>
+        
+      <a href="javascript:" class="color5">Flag</a>
+        
+      </span>
+      
+  </div>
+    
+        <h1 class="article-title">Go语言flag包</h1>
+    
+    <div class="toc-ref">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#flag包"><span class="toc-text">flag包</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#overview"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#examples"><span class="toc-text">示例:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#index"><span class="toc-text">索引</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#undefined"><span class="toc-text">Package files</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="flag包"><a href="#flag包" class="headerlink" title="flag包"></a><a href="https://golang.org/pkg/flag" target="_blank" rel="external">flag</a>包</h1><pre><code>import &quot;flag&quot;
+</code></pre><p>   &ensp;&ensp;&ensp;&ensp;<a href="#overview">概述</a><br>   &ensp;&ensp;&ensp;&ensp;<a href="#examples">示例</a><br>   &ensp;&ensp;&ensp;&ensp;<a href="#index">索引</a>  </p>
+<p></p><h2 id="overview">概述</h2><br>Flag包履行命令行flag语法分析的功能。<br>用法：<br>用flag.String(),Bool(),Int()等函数定义flag。<br>它声明一个名为“-flagname”的整数flag，保存在整形(*int)的指针ip中。  <p></p>
+<pre><code>import "flag"
+var ip = flag.Int("flagname", 1234, "help message for flagname")</code></pre> 
+你也可以用函数Var()把flag赋值给一个变量。
+<pre><code>var flagvar int
+func init() {
+    flag.IntVar(&flagvar, "flagname", 1234, "help message for flagname")
+}</code></pre>
+你也可以创建自定义的flag，来满足值接口(通过指针接收器实现)。通过下面的语句实现与flag的配对。
+<pre><code>flag.Var(&flagVal, "name", "help message for flagname")</code></pre>
+有些flag，默认值只是变量的初始值。  
+所有的flag都定义一会，执行
+<pre><code>flag.Parse()</code></pre>
+来解析命令行参数到已定义的flag。  
+<p></p>
+Flag也可以直接使用。如果你使用flag自身，它们都是指针。如果绑定到变量，它们就是值。
+<pre><code>fmt.Println("ip has value ", \*ip)
+fmt.Println("flagvar has value ", flagvar)</code></pre>
+解析以后，flag.Args()的切片就是flag的参数，也可以用flag.Arg(i)获取单个参数。  
+参数序号从0到flag.NArg()-1。  
+
+命令行flag语法：
+<pre><code>-flag
+-flag=x
+-flag x //只能是非布尔值</code></pre>
+“-”和“==”都是有效的，二者等价。上面最后一种情况不能为布尔值。因为如下命令
+<pre><code>cmd -x \*</code></pre>
+当\*为0时，可以理解为文件名为0，也可以理解为布尔值false，会造成困惑。所以当你要表示布尔flag时，只能用-flag=false（上述第二种方式）。  
+Flag解析时碰到non-flag参数（“-”就是non-flag参数）时或终止符“--”后停止。
+整形flag可接受形如1234、0664、0x1234和负值的数。布尔型flag包括：
+<pre><code>1, 0, t, f, T, F, true, false, TRUE, FALSE, True, False</code></pre>
+持续flag接受任意有效的输入。以赋值给time.ParseDuration。  
+默认的命令行flag集由顶级（top-level）函数控制。类型FlagSet允许定义独立的flag集，例如处理命令行参数里面的子命令集。FlagSet的处理方式与顶级函数对命令行flag的处理类似。    
+<p></p>
+<h2 id="examples">示例:</h2>
+<pre><code>// These examples demonstrate more intricate uses of the flag package.
+package main
+
+import (
+    "errors"
+    "flag"
+    "fmt"
+    "strings"
+    "time"
+)
+
+// Example 1: A single string flag called "species" with default value "gopher".
+var species = flag.String("species", "gopher", "the species we are studying")
+
+// Example 2: Two flags sharing a variable, so we can have a shorthand.
+// The order of initialization is undefined, so make sure both use the
+// same default value. They must be set up with an init function.
+var gopherType string
+
+func init() {
+    const (
+        defaultGopher = "pocket"
+        usage         = "the variety of gopher"
+    )
+    flag.StringVar(&gopherType, "gopher\_type", defaultGopher, usage)
+    flag.StringVar(&gopherType, "g", defaultGopher, usage+" (shorthand)")
+}
+
+// Example 3: A user-defined flag type, a slice of durations.
+type interval []time.Duration
+
+// String is the method to format the flag's value, part of the flag.Value interface.
+// The String method's output will be used in diagnostics.
+func (i \*interval) String() string {
+    return fmt.Sprint(\*i)
+}
+
+// Set is the method to set the flag value, part of the flag.Value interface.
+// Set's argument is a string to be parsed to set the flag.
+// It's a comma-separated list, so we split it.
+func (i \*interval) Set(value string) error {
+    // If we wanted to allow the flag to be set multiple times,
+    // accumulating values, we would delete this if statement.
+    // That would permit usages such as
+    //    -deltaT 10s -deltaT 15s
+    // and other combinations.
+    if len(\*i) > 0 {
+        return errors.New("interval flag already set")
+    }
+    for _, dt := range strings.Split(value, ",") {
+        duration, err := time.ParseDuration(dt)
+        if err != nil {
+            return err
+        }
+        \*i = append(\*i, duration)
+    }
+    return nil
+}
+
+// Define a flag to accumulate durations. Because it has a special type,
+// we need to use the Var function and therefore create the flag during
+// init.
+
+var intervalFlag interval
+
+func init() {
+    // Tie the command-line flag to the intervalFlag variable and
+    // set a usage message.
+    flag.Var(&intervalFlag, "deltaT", "comma-separated list of intervals to use between events")
+}
+
+func main() {
+    // All the interesting pieces are with the variables declared above, but
+    // to enable the flag package to see the flags defined there, one must
+    // execute, typically at the start of main (not init!):
+    //    flag.Parse()
+    // We don't run it here because this is not a main function and
+    // the testing suite has already parsed the flags.
+}
+</code></pre>
+
+<p></p><h2 id="index">索引</h2><br>    <a href="#pkg-variables">Variables</a><br>    <a href="#Arg">func Arg(i int) string</a><br>    <a href="#Args">func Args() []string</a><br>    <a href="#Bool">func Bool(name string, value bool, usage string) *bool</a><br>    <a href="#BoolVar">func BoolVar(p *bool, name string, value bool, usage string)</a><br>    <a href="#Duration">func Duration(name string, value time.Duration, usage string) *time.Duration</a><br>    <a href="#DurationVar">func DurationVar(p *time.Duration, name string, value time.Duration, usage string)</a><br>    <a href="#Float64">func Float64(name string, value float64, usage string) *float64</a><br>    <a href="#Float64Var">func Float64Var(p *float64, name string, value float64, usage string)</a><br>    <a href="#int">func Int(name string, value int, usage string) *int</a><br>    <a href="#int64">func Int64(name string, value int64, usage string) *int64</a><br>    <a href="#int64Var">func Int64Var(p *int64, name string, value int64, usage string)</a><br>    <a href="#intVar">func IntVar(p *int, name string, value int, usage string)</a><br>    <a href="#NArg">func NArg() int</a><br>    <a href="#NFlag">func NFlag() int</a><br>    <a href="#Parse">func Parse()</a><br>    <a href="#Parsed">func Parsed() bool</a><br>    <a href="#PrintDefaults">func PrintDefaults()</a><br>    <a href="#Set">func Set(name, value string) error</a><br>    <a href="#String">func String(name string, value string, usage string) *string</a><br>    <a href="#StringVar">func StringVar(p *string, name string, value string, usage string)</a><br>    <a href="#Uint">func Uint(name string, value uint, usage string) *uint</a><br>    <a href="#Uint64">func Uint64(name string, value uint64, usage string) *uint64</a><br>    <a href="#Uint64Var">func Uint64Var(p *uint64, name string, value uint64, usage string)</a><br>    <a href="#UintVar">func UintVar(p *uint, name string, value uint, usage string)</a><br>    <a href="#UnquoteUsage">func UnquoteUsage(flag *Flag) (name string, usage string)</a><br>    <a href="#Var">func Var(value Value, name string, usage string)</a><br>    <a href="#Visit">func Visit(fn func(*Flag))</a><br>    <a href="#VisitAll">func VisitAll(fn func(*Flag))</a><br>    <a href="#ErrorHandling">type ErrorHandling</a><br>    <a href="#Flag">type Flag</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#Lookup">func Lookup(name string) *Flag</a><br>    <a href="#FlagSet">type FlagSet</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#NewFlagSet">func NewFlagSet(name string, errorHandling ErrorHandling) *FlagSet</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Arg">func (f *FlagSet) Arg(i int) string</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Args">func (f *FlagSet) Args() []string</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Bool">func (f *FlagSet) Bool(name string, value bool, usage string) *bool</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.BoolVar">func (f *FlagSet) BoolVar(p *bool, name string, value bool, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Duration">func (f *FlagSet) Duration(name string, value time.Duration, usage string) *time.Duration</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.DurationVar">func (f *FlagSet) DurationVar(p *time.Duration, name string, value time.Duration, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Float64">func (f *FlagSet) Float64(name string, value float64, usage string) *float64</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Float64Var">func (f *FlagSet) Float64Var(p *float64, name string, value float64, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Init">func (f *FlagSet) Init(name string, errorHandling ErrorHandling)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Int">func (f *FlagSet) Int(name string, value int, usage string) *int</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Int64">func (f *FlagSet) Int64(name string, value int64, usage string) *int64</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Int64Var">func (f *FlagSet) Int64Var(p *int64, name string, value int64, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.IntVar">func (f *FlagSet) IntVar(p *int, name string, value int, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Lookup">func (f *FlagSet) Lookup(name string) *Flag</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.NArg">func (f *FlagSet) NArg() int</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.NFlag">func (f *FlagSet) NFlag() int</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Parse">func (f *FlagSet) Parse(arguments []string) error</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Parsed">func (f *FlagSet) Parsed() bool</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.PrintDefaults">func (f *FlagSet) PrintDefaults()</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Set">func (f *FlagSet) Set(name, value string) error</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.SetOutput">func (f *FlagSet) SetOutput(output io.Writer)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.String">func (f *FlagSet) String(name string, value string, usage string) *string</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.StringVar">func (f *FlagSet) StringVar(p *string, name string, value string, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Uint">func (f *FlagSet) Uint(name string, value uint, usage string) *uint</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Uint64">func (f *FlagSet) Uint64(name string, value uint64, usage string) *uint64</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Uint64Var">func (f *FlagSet) Uint64Var(p *uint64, name string, value uint64, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.UintVar">func (f *FlagSet) UintVar(p *uint, name string, value uint, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Var">func (f *FlagSet) Var(value Value, name string, usage string)</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.Visit">func (f *FlagSet) Visit(fn func(*Flag))</a><br>    &ensp;&ensp;&ensp;&ensp;<a href="#FlagSet.VisitAll">func (f *FlagSet) VisitAll(fn func(*Flag))</a><br>    <a href="#Getter">type Getter</a><br>    <a href="#Value">type Value</a>  <p></p>
+<p></p><h5>Package files</h5><br>    &ensp;&ensp;&ensp;&ensp;<a href="https://golang.org/src/flag/flag.go" target="_blank" rel="external">flag.go</a><p></p>
+
+      
+    </div>
+</article>
+
+
+    
+        <section id="comments" class="disqus">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://glody.net/2017/05/02/Go/flag/';
+            this.page.identifier = '2017/05/02/Go/flag/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//yelog.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+    </div>
+</div>
+<div class="full-toc">
+    <button class="full"><span class="min"></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+</div>
+</body>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.pjax/1.9.6/jquery.pjax.min.js"></script>
+<script src="/js/script.js"></script>
+</html>
