@@ -2,14 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Glody&#39;s Notes</title>
+  <title>Linux解压 | Glody&#39;s Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Glody's Notes">
-<meta property="og:url" content="http://glody.net/archives/2017/11/page/3/index.html">
+  <meta name="description" content="##tar##解包 tar xvf FileName.tar打包 tar cvf FileName.tar DirName   ##gz##解压 gunzip  FileName.gz    gzip -d  FileName.gz压缩 gzip FileName   ##tar.gz/tgz##解压 tar zxvf FileName.tar.gz压缩 tar zcvf FileName.tar">
+<meta name="keywords" content="Markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux解压">
+<meta property="og:url" content="http://glody.net/2017/11/22/Markdown/unzip/index.html">
 <meta property="og:site_name" content="Glody's Notes">
+<meta property="og:description" content="##tar##解包 tar xvf FileName.tar打包 tar cvf FileName.tar DirName   ##gz##解压 gunzip  FileName.gz    gzip -d  FileName.gz压缩 gzip FileName   ##tar.gz/tgz##解压 tar zxvf FileName.tar.gz压缩 tar zcvf FileName.tar">
+<meta property="og:updated_time" content="2017-11-22T12:51:14.740Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Glody's Notes">
+<meta name="twitter:title" content="Linux解压">
+<meta name="twitter:description" content="##tar##解包 tar xvf FileName.tar打包 tar cvf FileName.tar DirName   ##gz##解压 gunzip  FileName.gz    gzip -d  FileName.gz压缩 gzip FileName   ##tar.gz/tgz##解压 tar zxvf FileName.tar.gz压缩 tar zcvf FileName.tar">
   
   
     <link rel="icon" href="https://avatars3.githubusercontent.com/u/1768868?v=3&s=460">
@@ -213,28 +218,59 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article>
-    <div class="post-meta">
+        <article id="post-Markdown/unzip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-11-22 20:51:14">2017 November 22</time>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color4">Markdown</a>
+        
+      </span>
+      
+  </div>
+    
+        <h1 class="article-title">Linux解压</h1>
+    
+    <div class="toc-ref">
+        
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
     </div>
-    <h1 class="article-title" data-identifier="">Why Blog</h1>
-    <h2 id="nraxl">对博客的理解</h2>
-    <p>喜欢写Blog的人，会经历三个阶段。</p>
-    <blockquote>
-        <p>　　第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。<br>
-            　　第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。<br>
-            　　第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-    </blockquote>
-    <p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-    <p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-    <h2 id="brtlq">博客平台</h2>
-    <p>这个博客通过 <a href="https://hexo.io/" target="_blank">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>，主题<a href="https://github.com/yelog/3-hexo" target="_blank">3-hexo</a>已经在github上开源
-    <p>主要功能：<br>
-        1. 通过分类（category）展示文章列表<br>
-        2. 模糊搜索文章标题<br>
-        3. 搜索支持tag搜索，例如：#hexo<br>
-        4. 全屏功能和文章toc显示<br>
-        5. 评论<br>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##tar##<br>解包 tar xvf FileName.tar<br>打包 tar cvf FileName.tar DirName  </p>
+<p>##gz##<br>解压 gunzip  FileName.gz<br>    gzip -d  FileName.gz<br>压缩 gzip FileName  </p>
+<p>##tar.gz/tgz##<br>解压 tar zxvf FileName.tar.gz<br>压缩 tar zcvf FileName.tar.gz DirName   </p>
+<p>##bz##<br>解压 bzip2 -d FileName.bz<br>     bunzip2 FileName.bz  </p>
+<p>##bz2##<br>解压 bzip2 -d FileName.bz2<br>     bunzip2 FileName.bz2<br>压缩 bzip2 -z FileName  </p>
+<p>##tar.bz##<br>解压 tar jxvf FileName.tar.bz  </p>
+<p>##tar.bz2##<br>解压 tar jxvf FileName.tar.bz2<br>     tar –bzip xvf FileName.tar.bz2<br>压缩 tar jcvf FileName.tar.bz2 DirName   </p>
+<p>##Z##<br>解压 uncompress FileName.Z<br>压缩 compress FileName  </p>
+<p>##tar.Z##<br>解压 tar Zxvf FileName.tar.Z<br>压缩 tar Zcvf FileName.tar.Z DirName  </p>
+<p>##zip##<br>解压 unzip FileName.zip<br>压缩 zip FileName.zip DirName  </p>
+<p>##rar##<br>解压 rar x FileName.rar<br>压缩 rar a FileName.rar DirName  </p>
+<p>##lha##<br>解压 lha -e FileName.lha<br>压缩 lha -a FileName.lha FileName  </p>
+<p>##rpm##<br>解包 rpm2cpio FileName.rpm | cpio -div  </p>
+<p>##deb##<br>解包 ar p FileName.deb data.tar.gz | tar zxf -  </p>
+
+      
+    </div>
 </article>
+
+
+    
+
     </div>
 </div>
 <div class="full-toc">
