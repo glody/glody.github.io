@@ -2,14 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Glody&#39;s Notes</title>
+  <title>解决vm联网问题 | Glody&#39;s Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Glody's Notes">
-<meta property="og:url" content="http://glody.net/tags/Markdown/page/3/index.html">
+  <meta name="description" content="#由于eth0和br_eth0都有ip地址，导致网络route出错。原因是管理节点和计算节点在同一台vm上，并且vm有dhclient进程，当ip地址租约到期或其它原因导致需要向dhcp server重新request ip时，可能会通过eth0去获取ip，这样就会导致eth0和br_eht0都有ip，并且默认路由是eth0（route -n），这就导致路由出差，网络无法连接。 ifconfig">
+<meta name="keywords" content="Markdown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决vm联网问题">
+<meta property="og:url" content="http://glody.net/2017/11/23/Markdown/eth0/index.html">
 <meta property="og:site_name" content="Glody's Notes">
+<meta property="og:description" content="#由于eth0和br_eth0都有ip地址，导致网络route出错。原因是管理节点和计算节点在同一台vm上，并且vm有dhclient进程，当ip地址租约到期或其它原因导致需要向dhcp server重新request ip时，可能会通过eth0去获取ip，这样就会导致eth0和br_eht0都有ip，并且默认路由是eth0（route -n），这就导致路由出差，网络无法连接。 ifconfig">
+<meta property="og:updated_time" content="2017-11-23T02:36:21.983Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Glody's Notes">
+<meta name="twitter:title" content="解决vm联网问题">
+<meta name="twitter:description" content="#由于eth0和br_eth0都有ip地址，导致网络route出错。原因是管理节点和计算节点在同一台vm上，并且vm有dhclient进程，当ip地址租约到期或其它原因导致需要向dhcp server重新request ip时，可能会通过eth0去获取ip，这样就会导致eth0和br_eht0都有ip，并且默认路由是eth0（route -n），这就导致路由出差，网络无法连接。 ifconfig">
   
   
     <link rel="icon" href="https://avatars3.githubusercontent.com/u/1768868?v=3&s=460">
@@ -204,28 +209,52 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article>
-    <div class="post-meta">
+        <article id="post-Markdown/eth0" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+      
+      <time class="date" title="2017-11-23 10:36:21">2017 November 23</time>
+      
+      
+      <span class="tag">
+        
+      <a href="javascript:" class="color4">Markdown</a>
+        
+      </span>
+      
+  </div>
+    
+        <h1 class="article-title">解决vm联网问题</h1>
+    
+    <div class="toc-ref">
+        
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
     </div>
-    <h1 class="article-title" data-identifier="">Why Blog</h1>
-    <h2 id="nraxl">对博客的理解</h2>
-    <p>喜欢写Blog的人，会经历三个阶段。</p>
-    <blockquote>
-        <p>　　第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。<br>
-            　　第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。<br>
-            　　第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-    </blockquote>
-    <p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-    <p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-    <h2 id="brtlq">博客平台</h2>
-    <p>这个博客通过 <a href="https://hexo.io/" target="_blank">Hexo</a> 生成，部署在 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>，主题<a href="https://github.com/yelog/3-hexo" target="_blank">3-hexo</a>已经在github上开源
-    <p>主要功能：<br>
-        1. 通过分类（category）展示文章列表<br>
-        2. 模糊搜索文章标题<br>
-        3. 搜索支持tag搜索，例如：#hexo<br>
-        4. 全屏功能和文章toc显示<br>
-        5. 评论<br>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <pre><code class="lang：shell">#由于eth0和br_eth0都有ip地址，导致网络route出错。原因是管理节点和计算节点在同一台vm上，并且vm有dhclient进程，当ip地址租约到期或其它原因导致需要向dhcp server重新request ip时，可能会通过eth0去获取ip，这样就会导致eth0和br_eht0都有ip，并且默认路由是eth0（route -n），这就导致路由出差，网络无法连接。
+ifconfig eth0
+ifconfig br_eth0
+route -n
+route add default gw 172.20.0.1
+tracepath 192.168.200.100
+</code></pre>
+
+      
+    </div>
 </article>
+
+
+    
+
     </div>
 </div>
 <div class="full-toc">
