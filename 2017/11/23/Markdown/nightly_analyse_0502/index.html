@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>add test suite | Glody&#39;s Notes</title>
+  <title>nightly analyse 0502 | Glody&#39;s Notes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="vim /home/jenkins/jenkins_script/testsuite_job.py   TestSuiteJob(&amp;#39;mevoco_2.0.x&amp;#39;, &amp;#39;nightly&amp;#39;, &amp;#39;mevoco_2.0.x&amp;#39;, &amp;#39;multiclusters&amp;#39;, &amp;#39;test-config-local-ps.xml&amp;#39;, 2, mev">
+  <meta name="description" content="basic test_ldap_login  –New pr not allowed anonymity access ldap server, had updated ldap server and tmpt file test_ldap_tls_login –New pr not allowed anonymity access ldap server, had updated ldap s">
 <meta name="keywords" content="Markdown">
 <meta property="og:type" content="article">
-<meta property="og:title" content="add test suite">
-<meta property="og:url" content="http://glody.net/2017/11/23/Markdown/Add_test_suite/index.html">
+<meta property="og:title" content="nightly analyse 0502">
+<meta property="og:url" content="http://glody.net/2017/11/23/Markdown/nightly_analyse_0502/index.html">
 <meta property="og:site_name" content="Glody's Notes">
-<meta property="og:description" content="vim /home/jenkins/jenkins_script/testsuite_job.py   TestSuiteJob(&amp;#39;mevoco_2.0.x&amp;#39;, &amp;#39;nightly&amp;#39;, &amp;#39;mevoco_2.0.x&amp;#39;, &amp;#39;multiclusters&amp;#39;, &amp;#39;test-config-local-ps.xml&amp;#39;, 2, mev">
-<meta property="og:updated_time" content="2017-11-23T07:00:18.457Z">
+<meta property="og:description" content="basic test_ldap_login  –New pr not allowed anonymity access ldap server, had updated ldap server and tmpt file test_ldap_tls_login –New pr not allowed anonymity access ldap server, had updated ldap s">
+<meta property="og:updated_time" content="2017-11-23T07:00:28.660Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="add test suite">
-<meta name="twitter:description" content="vim /home/jenkins/jenkins_script/testsuite_job.py   TestSuiteJob(&amp;#39;mevoco_2.0.x&amp;#39;, &amp;#39;nightly&amp;#39;, &amp;#39;mevoco_2.0.x&amp;#39;, &amp;#39;multiclusters&amp;#39;, &amp;#39;test-config-local-ps.xml&amp;#39;, 2, mev">
+<meta name="twitter:title" content="nightly analyse 0502">
+<meta name="twitter:description" content="basic test_ldap_login  –New pr not allowed anonymity access ldap server, had updated ldap server and tmpt file test_ldap_tls_login –New pr not allowed anonymity access ldap server, had updated ldap s">
   
   
     <link rel="icon" href="https://avatars3.githubusercontent.com/u/1768868?v=3&s=460">
@@ -473,10 +473,10 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Markdown/Add_test_suite" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Markdown/nightly_analyse_0502" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
       
-      <time class="date" title="2017-11-23 15:00:17">2017 November 23</time>
+      <time class="date" title="2017-11-23 15:00:27">2017 November 23</time>
       
       
       <span class="tag">
@@ -487,7 +487,7 @@
       
   </div>
     
-        <h1 class="article-title">add test suite</h1>
+        <h1 class="article-title">nightly analyse 0502</h1>
     
     <div class="toc-ref">
         
@@ -505,23 +505,40 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>vim /home/jenkins/jenkins_script/testsuite_job.py  <pre><code class="lang:shell"> TestSuiteJob(&#39;mevoco_2.0.x&#39;, &#39;nightly&#39;, &#39;mevoco_2.0.x&#39;, &#39;multiclusters&#39;, &#39;test-config-local-ps.xml&#39;, 2, mevoco_2_0, scenarioconfig=&#39;scenario-config-local-ps.xml&#39;),
-</code></pre>
+<li>basic<ul>
+<li>test_ldap_login  –New pr not allowed anonymity access ldap server, had updated ldap server and tmpt file</li>
+<li>test_ldap_tls_login –New pr not allowed anonymity access ldap server, had updated ldap server and tmpt file</li>
+</ul>
 </li>
-<li>vim /home/jenkins/test_script/post_test_case_script.sh<pre><code class="lang:shell"> if [ &quot;${TESTCONFIG}&quot; == &quot;test-config-local-ps.xml&quot; ]; then
-             POSTFIX=&quot;_localstorage&quot;
-</code></pre>
+<li>multihosts_image_store<ul>
+<li>vms/test_4vm_vm_ops  –Retest pass</li>
+</ul>
 </li>
-<li>vim /home/jenkins/test_script/run_test.sh                <pre><code class="lang:shell"> if [ &quot;${TESTCONFIG}&quot; == &quot;test-config-local-ps.xml&quot; ]; then
-             POSTFIX=&quot;_localstorage&quot;
-</code></pre>
+<li>multihosts_smp<ul>
+<li>vms/test_4vm_vm_ops  –Retest pass</li>
+</ul>
 </li>
-<li>scp scenario-zbs-ps.tmpt 172.20.198.87:/home/jenkins/configs/integrationtest/vm/multihosts/<br> vim scenario-zbs-ps.tmpt<pre><code class="lang:shell"> vmInstranceOfferingUuid2 = f9f6f77348ff44228aec99d5b35be8c9
- scsiVolumeDiskOfferingUuid = 4d40f736cd3d428486b7500db29a27f5
- fenceip = &#39;172.20.0.1&#39;
- zbsUrl = &#39;http://192.168.200.100/mirror/share/liq/zbs.bin&#39;
- drbdUtilsUrl = &#39;http://192.168.200.100/mirror/share/liq/drbd/drbd-utils-8.9.11-1.el7.centos.x86_64.rpm&#39;
-</code></pre>
+<li>vcenter_vcenter-iscsi<ul>
+<li>test_vcenter_vm_create  –The server is out of date, SHengyan will help to update the server</li>
+<li>test_vcenter_vm_delete  –The server is out of date, SHengyan will help to update the server</li>
+<li>test_vcenter_vm_reboot  –The server is out of date, SHengyan will help to update the server</li>
+<li>test_vcenter_vm_start_stop  –The server is out of date, SHengyan will help to update the server</li>
+<li>test_vcenter_vm_suspend  –The server is out of date, SHengyan will help to update the server</li>
+<li>test_vcenter_vm_no_nic_start_stop  –The feature not ready, developing(info from Shengyan)</li>
+</ul>
+</li>
+<li>virt_plus_localstorage<ul>
+<li>other/test_parallel_crt_vm_to_use_all_disk  –Retest pass</li>
+<li>qos/test_set_attached_outbound_qos2  –Updated case</li>
+<li>test_detach_vm_net_check_vm_ops –Retest pass</li>
+</ul>
+</li>
+<li>virt_plus_local_nfs<ul>
+<li>over_provision/test_chg_storage_over_prv  –Retest pass</li>
+<li>over_provision/test_storage_over_provision</li>
+<li>qos/test_set_attached_outbound_qos2   –Updated case</li>
+<li></li>
+</ul>
 </li>
 </ul>
 
